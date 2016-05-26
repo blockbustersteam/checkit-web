@@ -3,20 +3,20 @@
 	hr
 
 	#innerWrap
-		img(src="/imgs/pharma.png" style="float:left;margin-right: 60px; border-radius: 30px; width: 38%;box-shadow: 8px 7px 12px #888888;")
+		img(src="/imgs/pharma.png" style="float:left;margin-right: 60px; border-radius: 4px; width: 38%;box-shadow: 8px 7px 12px #888888;")
 		
 		form(action="/newItem" method="POST")#newItemform
 			legend 
-				input(type="text" name="ItemId" placeholder="Item Id" disabled style="border-margin:4px;")
+				input(type="text" name="ItemId" placeholder="Item Id" disabled style="border-radius: 4px; color: #f2a521;")
 			legend 
-				select(name = "Barcode")
+				select(name = "Barcode" style="border-radius: 4px;")
 					option(value="") Product Barcode 
 					option(value="9300605042391") 9300605042391
 					option(value="9300605042421") 9300605042421
 					option(value="9310434001759") 9310434001759
 					option(value="9310434001766") 9310434001766
 			legend 
-				input(type="text" name="Date" placeholder="Date" disabled)
+				input(type="text" name="Date" placeholder="Date" disabled style="border-radius: 4px;")
 			legend
 				button(type="button" style="margin:10px 10px 5px 10px")#generate
 					span.fa.fa-cog &nbsp;&nbsp;
