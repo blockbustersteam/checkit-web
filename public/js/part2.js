@@ -77,7 +77,7 @@ $(document).on('ready', function() {
 		if(user.username){
 			$("input[name='ItemId']").val(randStr(15).toUpperCase());
 		
-			$("input[name='Date']").val(formatDate(Date(), '%Y-%m-%d %H:%M'));
+			$("input[name='Date']").val(formatDate(Date(), '%Y-%M-%d %H:%m:%s'));
 			
 			$("#submit").removeAttr("disabled");		
 		}
@@ -122,7 +122,7 @@ $(document).on('ready', function() {
 				item: {
 					id: itId,
 					user: user.username,
-					date: formatDate(Date(), '%Y-%M-%d %I:%m%p'),
+					date: formatDate(Date(), '%Y-%M-%d %H:%m:%s'),
 					location: bag.session.user_loc,
 					newowner: $("input[name='AccountId']").val()
 				}
@@ -145,7 +145,7 @@ $(document).on('ready', function() {
 				item: {
 					id: itId,
 					user: user.username,
-					date: formatDate(Date(), '%Y-%m-%d %H:%M'),
+					date: formatDate(Date(), '%Y-%M-%d %H:%m:%s'),
 					location: bag.session.user_loc
 				}
 			};
@@ -166,7 +166,7 @@ $(document).on('ready', function() {
 				item: {
 					id: itId,
 					user: user.username,
-					date: formatDate(Date(), '%Y-%m-%d %H:%M'),
+					date: formatDate(Date(), '%Y-%M-%d %H:%m:%s'),
 					location: bag.session.user_loc,
 					status: $("select[name='newStatus']").val()
 				}
@@ -265,11 +265,11 @@ $(document).on('ready', function() {
 		processFilterForm(panels[0]);
 	});
 
-	var e = formatDate(new Date(), '%d/%M/%Y &nbsp;%I:%m%P');
+	var e = formatDate(new Date(), '%Y-%M-%d %H:%m:%s');
 	$("#blockdate").html('<span style="color:#D4DCDC">TIME</span>&nbsp;&nbsp;' + e + ' UTC');
 
 	setInterval(function() {
-		var e = formatDate(new Date(), '%d/%M/%Y &nbsp;%I:%m%P');
+		var e = formatDate(new Date(), '%Y-%M-%d %H:%m:%s');
 		$("#blockdate").html('<span style="color:#D4DCDC">TIME</span>&nbsp;&nbsp;' + e + ' UTC');
 
 	}, 60000);

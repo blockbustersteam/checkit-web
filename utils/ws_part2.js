@@ -4,6 +4,8 @@
 var ibc = {};
 var chaincode = {};
 var async = require('async');
+var creds = require("../user_creds.json");
+var isRetailer = "False";
 
 module.exports.setup = function(sdk, cc){
 	ibc = sdk;
@@ -21,7 +23,7 @@ module.exports.process_msg = function(ws, data, owner){
 	else if(data.type == 'createItem'){
 		console.log('Create Item ', data, owner);
 		if(data.item){
-			chaincode.invoke.createItem([data.item.id, data.item.name, data.item.currentowner, data.item.barcode, data.item.vdate, data.item.location], cb_invoked_createitem);				//create a new paper
+			chaincode.invoke.createItem([data.item.id, data.item.currentowner, data.item.barcode, data.item.vdate, data.item.location], cb_invoked_createitem);				//create a new paper
 		}
 	}
 	else if(data.type == 'transferItem'){
@@ -30,7 +32,12 @@ module.exports.process_msg = function(ws, data, owner){
 	}
 	else if(data.type == 'confirmItem'){
 		console.log('Confirm Item ', data);
-		chaincode.invoke.confirmOwnership([data.item.id, data.item.user, data.item.date, data.item.location], cb_invoked_confirmitem);
+		for (var i in creds){
+			if (creds[i].username == data.item.user && creds[i].role == "RETAILER"){
+				isRetailer = "True";
+			}
+		}
+		chaincode.invoke.confirmOwnership([data.item.id, data.item.user, data.item.date, data.item.location, isRetailer], cb_invoked_confirmitem);
 	}
 	else if(data.type == 'getItem'){
 		console.log('Get Item', data.itemId);
@@ -44,10 +51,10 @@ module.exports.process_msg = function(ws, data, owner){
 		console.log('Get All Items By Status', data.itstatus, owner);
 		chaincode.query.getCurrentOwnerItemsByStatus([owner, data.itstatus], cb_got_allitems);
 	}
-	else if(data.type == 'getItemByBarcode'){
-		console.log('Get single Item By Barcode', data.barcode);
-		chaincode.query.getItemDetailsWithBarcode([data.barcode], cb_got_item);
-	}
+//	else if(data.type == 'getItemByBarcode'){
+//		console.log('Get single Item By Barcode', data.barcode);
+//		chaincode.query.getItemDetailsWithBarcode([data.barcode], cb_got_item);
+//	}
 	else if(data.type == 'changeStatus'){
 		console.log('Change status of single item', data, owner);
 		chaincode.invoke.changeStatus([data.item.id, owner, data.item.date, data.item.location, data.item.status], cb_invoked_changed_status);

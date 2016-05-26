@@ -29,7 +29,11 @@ var prodinfo	= require("../product_info.json");
 // Home
 // ============================================================================================================================
 
-	
+router.use(function(req, res, next) {
+	res.header("Access-Control-Allow-Origin", "*");
+//	res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+	next();
+});  
 
 router.route("/").get(function(req, res){
 	check_login(res, req);
@@ -90,6 +94,15 @@ router.route("/getItemsWithID").post(function(req, res){
 				}
 			}
 			res.send(pinfo);
+		}
+	})
+	chaincode.invoke.addScanCount([req.body.itemId], function (e){
+		if(e != null){
+			console.log('Add Scan Count error', e);
+			res.send(e);
+		}
+		else {
+			null
 		}
 	})
 });
