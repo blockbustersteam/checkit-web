@@ -30,6 +30,9 @@ $(document).on('ready', function() {
 	if(user.username)
 	{
 		$("#userField").html(user.username+ ' ');
+		$("#linkWraps").show();
+	} else {
+		$("#linkWraps").hide();
 	}
 
 	// Customize which panels show up for which user

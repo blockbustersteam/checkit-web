@@ -288,7 +288,7 @@ label {
   margin-left: 20px;
   font-size: 18px;
   font-weight: 600;
-  background: #5596E6;
+  background: #FFFFFF;
   position: relative;
   z-index: 4; }
 
@@ -765,6 +765,10 @@ th.header {
   color: #5596E6;
   margin-right: 10px;
   font-size: 20px; }
+
+  #LoginHeader{
+    color: blue;
+  }
 
 #userSelect {
   display: none;
