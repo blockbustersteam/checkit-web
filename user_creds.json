@@ -1,1 +1,2 @@
-[{"username":"MANUFACTURER","password":"passw0rd","role":"MANUFACTURER"},{"username":"DISTRIBUTOR1","password":"passw0rd","role":"DISTRIBUTOR"},{"username":"DISTRIBUTOR2","password":"passw0rd","role":"DISTRIBUTOR"},{"username":"RETAILER","password":"passw0rd","role":"RETAILER"}]
+[{"username":"MANUFACTURER1","companyname":"Johnson & Johnson Pacific","password":"passw0rd","role":"MANUFACTURER","location":"45 Jones Street, Ultimo NSW 2007, Australia"},{"username":"DISTRIBUTOR1","password":"passw0rd","role":"DISTRIBUTOR"},{"username":"DISTRIBUTOR2","password":"passw0rd","role":"DISTRIBUTOR"},{"username":"RETAILER", "companyname":"Chemist Warehouse Surry Hills","password":"passw0rd","role":"RETAILER","location":"401-407 Cleaveland Street, Surry Hills NSW 2010, Australia"}]
+
