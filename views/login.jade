@@ -18,8 +18,8 @@ block navpanel
 	
 // --------------- Main Stuff  -------------- //
 block content
-	#contentPanel
-		h1 Login
+	#contentPanel(style="background-color:#46444c; margin:0;")
+		
 		hr
 		
 		
@@ -30,8 +30,8 @@ block content
 				br
 			p
 
-				input(type="text" placeholder="LOGIN" name="username")
+				input(type="text" placeholder="LOGIN" name="username" style="border-radius:4px;")
 			p
 
-				input(type="password" placeholder="PASSWORD" name="password")
-			button(type="submit" style="margin-top:10px")#loginButton Login
+				input(type="password" placeholder="PASSWORD" name="password" style="border-radius:4px;")
+			button(type="submit" style="margin-top:10px; border-radius:4px;")#loginButton Login

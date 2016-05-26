@@ -1,8 +1,8 @@
 #logo
-	i.icon.ion-ios-infinite-outline
-	span  SUPPLY CHAIN
+	img(src="/imgs/Draft-Logo.png" style="display:block; margin: -10px auto 0px; border-radius: 30px; width: 180px; vertical-align:center; horizontal-align:center")
 
-#linkWraps
+
+#linkWraps(style="top: 17px;")
 	// there is JS code that will show the corresponding panel to the clicked navigation div.
 	// ie: clicking <div class="nav">HOME</div> will show panel #homePanel
 	// this code is in layout.jade
@@ -13,7 +13,7 @@
 	.nav#confirmLink(style="font-weight: 300;") CONFIRM 
 	.nav#changeStatusLink(style="font-weight: 300;") CHANGE STATUS
 	
-#whoAmI
+#whoAmI(style="color: grey; text-align: center;top: 5px;")
 	span.fa.fa-user#userIcon
 	span#userField(style="font-weight: 300;") LOGIN
 	span &nbsp;
@@ -26,5 +26,5 @@
 			span #{bag.setup.USER2.toUpperCase()}&nbsp;&nbsp;
 			
 			
-form#loginWrap
-	a(href="/logout" style="font-weight: 300;" ) Logout
+form#loginWrap(style="height:55px; margin:auto")
+	a(href="/logout" style="font-weight: 300;vertical-align: middle; padding-top:20%" ) Logout
