@@ -20,13 +20,17 @@ var async = require('async');
 
 // Load our modules.
 //var aux     = require("./site_aux.js");
-var rest    = require("../utils/rest.js");
+var rest    	= require("../utils/rest.js");
 var creds	= require("../user_creds.json");
+var prodinfo	= require("../product_info.json");
 
 
 // ============================================================================================================================
 // Home
 // ============================================================================================================================
+
+	
+
 router.route("/").get(function(req, res){
 	check_login(res, req);
 	res.render('part2', {title: 'CheckIt', bag: {setup: setup, e: process.error, session: req.session}} );
@@ -48,20 +52,49 @@ router.route("/dashboard").get(function(req, res){
 	res.render('part2', {title: 'CheckIt', bag: {setup: setup, e: process.error, session: req.session}} );
 });
 
-/*
-router.route("/getBatch").post(function(req, res){
 
-	chaincode.query.getBatch([req.body.batchId], function (e, batch){
+router.route("/getItemsWithID").post(function(req, res){
+
+	chaincode.query.getItemDetailsWithID([req.body.itemId], function (e, item){
 		if(e != null){
-			console.log('Get Batch error', e);
+			console.log('Get Item error', e);
 			res.send(e);
 		}
 		else{
-			res.send(batch);
+			var pinfo = {};
+			var company = "";
+			var owner = "";
+			for (var i in creds){
+				if(creds[i].username == JSON.parse(item).manufacturer){
+					company = creds[i].companyname
+				}
+			}
+			for (var i in creds){
+				if(creds[i].username == JSON.parse(item).currentOwner){
+					owner = creds[i].companyname
+				}
+			}
+			for(var i in prodinfo){
+                         	if(prodinfo[i].barcode == JSON.parse(item).barcode){
+					pinfo = {
+						name: prodinfo[i].productname,
+						image: prodinfo[i].productimage,
+						expdate: prodinfo[i].expdate,
+						batchno: prodinfo[i].batchno,
+						manufacturer: company,
+						origin: JSON.parse(item).transactions[0].location,
+						currentowner: owner, 
+						location: JSON.parse(item).transactions[JSON.parse(item).transactions.length-1].location
+					}
+					res.send(pinfo);
+				}
+			}
+			res.send(pinfo);
 		}
 	})
 });
 
+/*
 router.route("/claimBatch").post(function(req, res){
 
 	chaincode.invoke.claimBatch([req.body.batchId,req.body.user,req.body.date,req.body.location], function (e, resMsg){
@@ -74,6 +107,7 @@ router.route("/claimBatch").post(function(req, res){
 		}
 	})
 });
+*/
 
 router.route("/getAllBatches").post(function(req, res){
 
@@ -88,24 +122,12 @@ router.route("/getAllBatches").post(function(req, res){
 	})
 });
 
+/*
 router.route("/getAllBatchesDetails").post(function(req, res){
 
 	chaincode.query.getAllBatchesDetails([req.body.user], function (e, resMsg){
 		if(e != null){
 			console.log('Get All Batch Details error', e);
-			//res.send(e);
-		}
-		else{
-			res.send(resMsg);
-		}
-	})
-});
-
-router.route("/getNbItems").post(function(req, res){
-
-	chaincode.query.getNbItems([req.body.user], function (e, resMsg){
-		if(e != null){
-			console.log('Get All Batch error', e);
 			//res.send(e);
 		}
 		else{
@@ -128,32 +150,6 @@ router.route("/transferBatch").post(function(req, res){
 });
 */
 
-/*
-router.route("/sellItem").post(function(req, res){
-	//console.log([req.body.batchId,req.body.user,req.body.date,req.body.location,(req.body.quantity).toString(),req.body.newOwner]);
-	chaincode.invoke.sellBatchItem([req.body.batchId,req.body.user,req.body.date,req.body.location,(req.body.quantity).toString(),req.body.newOwner], function (e, resMsg){
-		if(e != null){
-			console.log('Sell Item error', e);
-			//res.send(e);
-		}
-		else{
-			res.send(resMsg);
-		}
-	})
-});
-
-router.route("/updateBatchQuality").post(function(req, res){
-	chaincode.invoke.updateBatchQuality([req.body.user,req.body.date,req.body.location,req.body.msg], function (e, resMsg){
-		if(e != null){
-			console.log('Update Batch Quality error', e);
-			//res.send(e);
-		}
-		else{
-			res.send(resMsg);
-		}
-	})
-});
-*/
 
 router.route("/login").get(function(req, res){
 	res.render('login', {title: 'Login', bag: {setup: setup, e: process.error, session: req.session}} );
