@@ -336,8 +336,7 @@ var options = 	{
 						git_url: 'https://github.com/blockbustersteam/blocktrace-chaincode',			//GO git http url
 					
 						//hashed cc name from prev deployment
-						//deployed_name: 'b1477cdf87cb1a510147f515f7192a762837541e4cb1a9a212036e75731c92efa18232fa03db99566d16e68533fd1db750528f4ddac9025f224c9b1b0be91009'
-						//deployed_name: '4f1bf6581ebe31326cf8ae669859225f1ef65ec6b718142f1e30a4dc9c9dbd51c3ddcc2ff070542c8c3d38e82d81c7690da5db7a0fbc3383874787816e2a4017'
+						//deployed_name: 'dd479cd5ed64dbebf4823b41c2421fbb3ca98260270526d5f12accb5ed7765ef3795e9925784d030bb44bdc9afaeda241bfecc0f18d5f23e0326820623733617'
 					}
 				};
 if(process.env.VCAP_SERVICES){
