@@ -1,0 +1,29 @@
+#newItemPanel(hidden).panel
+	h1 Enter Item Details
+	hr
+
+	#innerWrap
+		img(src="/imgs/pharma.png" style="float:left;margin-right: 60px; border-radius: 30px; width: 38%;box-shadow: 8px 7px 12px #888888;")
+		
+		form(action="/newItem" method="POST")#newItemform
+			legend 
+				input(type="text" name="ItemId" placeholder="Item Id" disabled)
+			legend 
+				select(name = "Barcode")
+					option(value="") Product Barcode 
+					option(value="9300605042391") 9300605042391
+					option(value="9300605042421") 9300605042421
+					option(value="9310434001759") 9310434001759
+					option(value="9310434001766") 9310434001766
+			legend 
+				input(type="text" name="Date" placeholder="Date" disabled)
+			legend
+				button(type="button" style="margin:10px 10px 5px 10px")#generate
+					span.fa.fa-cog &nbsp;&nbsp;
+					span GENERATE
+
+			legend
+				button(type="button" style="margin:10px 10px 5px 10px" disabled)#submit
+					span.fa.fa-plus &nbsp;&nbsp;
+					span SUBMIT
+				

@@ -1,0 +1,57 @@
+#dashboardPanel(hidden).panel
+	h1 Item Tracker
+	hr
+
+	#dashboardModal.modalDialog(style="margin-top: 200px")
+			div
+				.modal-header
+					h5 Filter Transactions
+					hr
+				.modal-content
+					form#dashboardFilter
+						input#dashboard_itemId.dashboard-filter(type="text" name="itemId" placeholder="Item Id")
+						br
+						br
+						a.filter-button(href="#close" title="Close" ) Close
+						
+	div(style="text-align:center")
+		span#spinner2.fa.fa-circle-o-notch.fa-spin(style="font-size: 80px;color:#5596E6")					
+	#openTrades
+		
+		br
+		a.filter-button(href="#dashboardModal") Filter Transactions
+		br
+		br
+		table#dashboardTable.tablesorter(style="width:60%;float:left;")
+			thead
+				tr 
+					th ITEM ID
+					th Barcode
+					th Current Owner
+					th Manufacturer
+					th Status
+			tbody#dashboardBody
+
+		table#itemDetailsTable.tablesorter(style="width:34%;float:right")
+			thead
+				tr 
+					th#bDetHeader(colspan="2" style="font-size: 12px;")
+			tbody#itemDetailsBody
+		
+		div(style="padding-left:66%")
+			form(action="/dashboard" method="POST")#transferForm
+				input(type="text" name="AccountId" placeholder="Account ID")
+				button(type="button" href="#transfer" title="Transfer")#transfersubmit
+					span TRANSFER
+			form(action="/dashboard" method="POST")#confirmForm
+				button(type="button" href="#confirm" title="Confirm")#confirmsubmit
+					span CONFIRM 
+			form(action="/dashboard" method="POST")#statusChangeForm
+				select(name = "newStatus")
+					option(value="") NEW STATUS
+					option(value="SOLD") SOLD
+					option(value="STOLEN") STOLEN
+					option(value="POTENTIAL COUNTERFEIT") POTENTIAL COUNTERFEIT
+				button(type="button" href="#changeStatus" title="Confirm")#changestatussubmit
+					span CHANGE STATUS 
+				
